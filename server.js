@@ -11,8 +11,11 @@ const app=express(), PORT=process.env.PORT||5000;
 const API_KEY=process.env.GEMINI_API_KEY||'';
 const MODEL=process.env.GEMINI_MODEL||'gemini-2.5-flash';
 const ai=API_KEY?new GoogleGenAI({apiKey:API_KEY}):null;
-app.use(cors()); app.use(express.json({limit:'400kb'})); app.use(express.static(__dirname));
+app.use(cors());
+app.use(express.json({ limit: '400kb' }));
 
+app.use('/css', express.static(path.join(__dirname, 'css')));
+app.use('/js', express.static(path.join(__dirname, 'js')));
 const HR=[
 'Can you introduce yourself and walk me through your background?',
 'Why did you choose this career path, and what interests you about this role?',
