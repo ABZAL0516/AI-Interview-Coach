@@ -168,9 +168,3 @@ if (process.env.VERCEL !== '1') {
 }
 
 export default app;
-
-if (process.env.VERCEL !== '1') {
-  app.listen(PORT, () => console.log(`AI Interview Coach running on port ${PORT}`));
-}
-
-export default app;
