@@ -103,11 +103,71 @@ ${pack(answers['3'])}`;
   res.json({success:true,evaluation:{grandScore:grand,recommendation:recommendation(grand),level1:{score:s1,maxScore:30,questions:a},level2:{score:s2,maxScore:40,questions:b},level3:{score:s3,maxScore:30,questions:c},overall:{strengths:Array.isArray(raw.overall?.strengths)?raw.overall.strengths.slice(0,5):[],weaknesses:Array.isArray(raw.overall?.weaknesses)?raw.overall.weaknesses.slice(0,5):[],summary:String(raw.overall?.summary||'')}}});
  }catch(e){console.error(e);res.status(502).json({success:false,error:e.message||'Gemini could not evaluate the interview.'})}
 });
-// Explicit page routes keep local and deployed navigation predictable.
-app.get('/', (_, res) => res.sendFile(path.join(__dirname, 'index.html')));
-for (const page of ['index','login','signup','setup','interview','results','profile']) {
-  app.get(`/${page}`, (_, res) => res.sendFile(path.join(__dirname, `${page}.html`)));
+
+// Serve all HTML pages
+
+app.get('/', (_, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/index.html', (_, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/login', (_, res) => {
+  res.sendFile(path.join(__dirname, 'login.html'));
+});
+
+app.get('/login.html', (_, res) => {
+  res.sendFile(path.join(__dirname, 'login.html'));
+});
+
+app.get('/signup', (_, res) => {
+  res.sendFile(path.join(__dirname, 'signup.html'));
+});
+
+app.get('/signup.html', (_, res) => {
+  res.sendFile(path.join(__dirname, 'signup.html'));
+});
+
+app.get('/setup', (_, res) => {
+  res.sendFile(path.join(__dirname, 'setup.html'));
+});
+
+app.get('/setup.html', (_, res) => {
+  res.sendFile(path.join(__dirname, 'setup.html'));
+});
+
+app.get('/interview', (_, res) => {
+  res.sendFile(path.join(__dirname, 'interview.html'));
+});
+
+app.get('/interview.html', (_, res) => {
+  res.sendFile(path.join(__dirname, 'interview.html'));
+});
+
+app.get('/results', (_, res) => {
+  res.sendFile(path.join(__dirname, 'results.html'));
+});
+
+app.get('/results.html', (_, res) => {
+  res.sendFile(path.join(__dirname, 'results.html'));
+});
+
+app.get('/profile', (_, res) => {
+  res.sendFile(path.join(__dirname, 'profile.html'));
+});
+
+app.get('/profile.html', (_, res) => {
+  res.sendFile(path.join(__dirname, 'profile.html'));
+});
+
+
+if (process.env.VERCEL !== '1') {
+  app.listen(PORT, () => console.log(`AI Interview Coach running on port ${PORT}`));
 }
+
+export default app;
 
 if (process.env.VERCEL !== '1') {
   app.listen(PORT, () => console.log(`AI Interview Coach running on port ${PORT}`));
