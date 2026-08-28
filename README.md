@@ -13,6 +13,3 @@
 - Protected pages redirect to login only when no session exists.
 - Navigation changes automatically between logged-out and logged-in states.
 - Logout clears only the session and active interview data.
-
-## Deployment note
-The root `/` route is explicitly served by Express, and all page navigation is generated from the site origin so links do not accidentally become relative to the current page path.
